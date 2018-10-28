@@ -1,6 +1,6 @@
 package com.hxcoltd.weather.controller;
 
-import com.hxcoltd.weather.service.CityClient;
+import com.hxcoltd.weather.service.DataClient;
 import com.hxcoltd.weather.service.WeatherReportService;
 import com.hxcoltd.weather.vo.City;
 import org.slf4j.Logger;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class WeatherReportController {
 	private WeatherReportService weatherReportService;
 
 	@Autowired
-	private CityClient cityClient;
+	private DataClient dataClient;
 	
 //	@GetMapping("/cityId/{cityId}")
 	@RequestMapping(value = {"/cityId/{cityId}", "/cityId"}, method = RequestMethod.GET)
@@ -38,7 +39,7 @@ public class WeatherReportController {
 //		System.out.println("---cityId--"+ cityId);
 
 		// 获取城市ID列表
-		List<City> cityList = cityClient.listCity();
+		List<City> cityList = dataClient.listCity();
 
 		if (cityId == null) cityId = "101270101";
 		model.addAttribute("title", "老杨的天气预报");

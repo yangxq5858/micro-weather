@@ -20,12 +20,12 @@ import java.util.List;
 public class WeatherReportServiceImpl implements WeatherReportService {
 
 	@Autowired
-	private WeatherDataClient weatherDataClient;
+	private DataClient dataClient;
 
 	@Override
 	public Weather getDataByCityId(String cityId) {
         //改为天气数据api服务来提供
-		WeatherResponse weatherResponse = weatherDataClient.getDataByCityId(cityId);
+		WeatherResponse weatherResponse = dataClient.getDataByCityId(cityId);
 		return weatherResponse.getData();
 	}
 
