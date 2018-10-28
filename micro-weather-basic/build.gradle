@@ -1,0 +1,41 @@
+//builscript 中脚本优先执行
+buildscript {
+    ext {
+        springBootVersion = '2.0.6.RELEASE'
+    }
+
+    repositories {
+        //mavenCentral()
+        maven {url "http://maven.aliyun.com/nexus/content/groups/public/"}
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.hx.springboot'
+version = '0.0.1-SNAPSHOT'
+//jdk 的版本
+sourceCompatibility = 1.8
+
+repositories {
+    //mavenCentral()
+    maven {url "http://maven.aliyun.com/nexus/content/groups/public/"}
+}
+
+
+dependencies {
+    //compile('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+
+    //用于访问第三方的api接口
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.3'
+
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
